@@ -1,4 +1,4 @@
-// 1. 
+// 1.
 const config = window.VALENTINE_CONFIG;
 
 // 2. 
