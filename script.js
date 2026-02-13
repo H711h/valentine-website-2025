@@ -1,15 +1,15 @@
-// 1. جلب الإعدادات والتحقق من وجودها
+// 1. 
 const config = window.VALENTINE_CONFIG;
 
-// 2. وظيفة التبديل بين الأسئلة (المراحل)
+// 2. 
 function showNextQuestion(questionNumber) {
-    // إخفاء جميع الأقسام
+    // إ
     document.querySelectorAll('.question-section').forEach(q => {
         q.classList.add('hidden');
         q.style.display = 'none';
     });
     
-    // إظهار القسم المطلوب
+    // إ
     const nextSection = document.getElementById(`question${questionNumber}`);
     if (nextSection) {
         nextSection.classList.remove('hidden');
@@ -17,12 +17,12 @@ function showNextQuestion(questionNumber) {
     }
 }
 
-// 3. وظيفة تحريك زر "No" فقط
+// 3. 
 function moveButton(button) {
-    // حماية إضافية: إذا كان الزر هو "Yes" لا تقم بتحريكه
+    // 
     if (button.id.includes('yes')) return;
 
-    // حساب إحداثيات عشوائية داخل حدود الشاشة
+    // 
     const x = Math.random() * (window.innerWidth - button.offsetWidth - 20);
     const y = Math.random() * (window.innerHeight - button.offsetHeight - 20);
     
@@ -32,40 +32,40 @@ function moveButton(button) {
     button.style.zIndex = '1000';
 }
 
-// 4. إعداد المحتوى عند تحميل الصفحة
+// 4. 
 document.addEventListener('DOMContentLoaded', () => {
     if (!config) {
         console.error("Config file not found!");
         return;
     }
 
-    // إعداد النصوص الأساسية من ملف الإعدادات
+    // 
     document.title = config.pageTitle;
     document.getElementById('valentineTitle').textContent = `${config.valentineName}, my love...`;
     
-    // المرحلة الأولى
+    // 
     document.getElementById('question1Text').textContent = config.questions.first.text;
     document.getElementById('yesBtn1').textContent = config.questions.first.yesBtn;
     document.getElementById('noBtn1').textContent = config.questions.first.noBtn;
     document.getElementById('secretAnswerBtn').textContent = config.questions.first.secretAnswer;
     
-    // المرحلة الثانية
+    // 
     document.getElementById('question2Text').textContent = config.questions.second.text;
     document.getElementById('startText').textContent = config.questions.second.startText;
     document.getElementById('nextBtn').textContent = config.questions.second.nextBtn;
     
-    // المرحلة الثالثة
+    //
     document.getElementById('question3Text').textContent = config.questions.third.text;
     document.getElementById('yesBtn3').textContent = config.questions.third.yesBtn;
     document.getElementById('noBtn3').textContent = config.questions.third.noBtn;
 
-    // تشغيل الميزات الإضافية
+    // 
     createFloatingElements();
     setupMusicPlayer();
     setupLoveMeter();
 });
 
-// 5. منطق عداد الحب (Love Meter)
+// 5. 
 function setupLoveMeter() {
     const loveMeter = document.getElementById('loveMeter');
     const loveValue = document.getElementById('loveValue');
@@ -78,11 +78,11 @@ function setupLoveMeter() {
             
             if (value > 100) {
                 extraLove.classList.remove('hidden');
-                // تمدد بسيط للعداد ليعطي تأثيراً بصرياً دون تخريب التصميم
+                // 
                 const expansion = Math.min((value - 100) / 100, 50);
                 loveMeter.style.width = `calc(100% + ${expansion}px)`;
                 
-                // تغيير الرسائل بناءً على القيمة في Config
+                // 
                 if (value >= 5000) {
                     extraLove.textContent = config.loveMessages.extreme;
                 } else if (value > 1000) {
@@ -98,7 +98,7 @@ function setupLoveMeter() {
     }
 }
 
-// 6. وظيفة الاحتفال النهائي
+// 6. 
 function celebrate() {
     document.querySelectorAll('.question-section').forEach(q => q.style.display = 'none');
     const celebration = document.getElementById('celebration');
@@ -109,13 +109,13 @@ function celebrate() {
     document.getElementById('celebrationMessage').textContent = config.celebration.message;
     document.getElementById('celebrationEmojis').textContent = config.celebration.emojis;
     
-    // تأثير الانفجار للقلوب
+    //
     for (let i = 0; i < 30; i++) {
         setTimeout(createSingleFloatingElement, i * 100);
     }
 }
 
-// 7. إعداد مشغل الموسيقى
+// 7. 
 function setupMusicPlayer() {
     const bgMusic = document.getElementById('bgMusic');
     const musicToggle = document.getElementById('musicToggle');
@@ -138,7 +138,7 @@ function setupMusicPlayer() {
     }
 }
 
-// 8. إنشاء العناصر العائمة (القلوب والدببة)
+// 8. 
 function createFloatingElements() {
     for (let i = 0; i < 15; i++) {
         createSingleFloatingElement();
@@ -153,18 +153,18 @@ function createSingleFloatingElement() {
     span.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
     span.style.position = 'absolute';
     span.style.left = Math.random() * 100 + 'vw';
-    span.style.top = '110vh'; // تبدأ من أسفل الشاشة
+    span.style.top = '110vh'; // 
     span.style.fontSize = (Math.random() * 20 + 20) + 'px';
     span.style.transition = `top ${Math.random() * 5 + 5}s linear`;
     
     container.appendChild(span);
 
-    // تحريك العنصر للأعلى
+    // 
     setTimeout(() => {
         span.style.top = '-10vh';
     }, 100);
 
-    // حذف العنصر بعد انتهاء الحركة لتوفير الذاكرة
+    //
     setTimeout(() => {
         span.remove();
     }, 10000);
