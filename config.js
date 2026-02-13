@@ -1,11 +1,11 @@
-// ============================================
+ط// ============================================
 // 💝 CUSTOMIZE YOUR VALENTINE'S WEBSITE HERE 💝
 // ============================================
 
 const CONFIG = {
     // Your Valentine's name that will appear in the title
     // Example: "Jade", "Sarah", "Mike"
-    valentineName: "Hello,beautiful girl",
+    valentineName: "Hey my love, answer this question, and i challenge u to say no, try",
 
     // The title that appears in the browser tab
     // You can use emojis! 💝 💖 💗 💓 💞 💕
